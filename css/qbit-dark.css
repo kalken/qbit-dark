@@ -1,0 +1,757 @@
+/*
+ * qbit-dark — dark theme for the qBittorrent WebUI
+ *
+ * @imported from the stock style.css; overrides the stock stylesheets via the :root nesting below.
+ * Always dark, regardless of the WebUI color-scheme preference.
+ */
+
+/* ---------------------------------------------------------------
+   Palette
+--------------------------------------------------------------- */
+
+:root:root:root {
+    --theme-window: #282828;
+    --theme-content: #1e1e1e;
+    --theme-control: #3a3a3c;
+    --theme-control-hover: #48484a;
+    --theme-field: #232323;
+    --theme-row-hover: rgb(255 255 255 / 5%);
+    --theme-row-selected: #464646;
+    --theme-sidebar-selected: rgb(255 255 255 / 11%);
+    --theme-separator: rgb(255 255 255 / 9%);
+    --theme-text: #ececec;
+    --theme-text-secondary: #a8a8a8;
+    --theme-text-tertiary: #6e6e6e;
+    --theme-accent: #0a84ff;
+    --theme-progress: linear-gradient(90deg, #b9bb3b 0%, #7fc243 55%, #3fae4c 100%);
+    --theme-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
+        "Segoe UI", system-ui, sans-serif;
+
+    /* Map onto the stock WebUI variables */
+    --color-accent-blue: var(--theme-accent);
+    --color-text-blue: #409cff;
+    --color-text-orange: #409cff;
+    --color-text-red: #ff6961;
+    --color-text-green: #32d74b;
+    --color-text-white: #ffffff;
+    --color-text-disabled: var(--theme-text-tertiary);
+    --color-text-default: var(--theme-text);
+    --color-background-primary: var(--theme-window);
+    --color-background-blue: var(--theme-row-selected);
+    --color-background-popup: #2c2c2e;
+    --color-background-default: #323232;
+    --color-background-hover: var(--theme-row-hover);
+    --color-border-blue: var(--theme-accent);
+    --color-border-default: #3a3a3a;
+    --color-icon-hover: none;
+
+    /* Icons, embedded so the theme needs no image files */
+    --theme-icon-add-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 14h-3v3h-2v-3H8v-2h3v-3h2v3h3v2zm-3-7V3.5L18.5 9H13z'/%3E%3C/svg%3E");
+    --theme-icon-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M3.5 17.6h17V20h-17zM12 14.5l-8.5-8h17z'/%3E%3C/svg%3E");
+    --theme-icon-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b8b8b8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    --theme-icon-chevron-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b8b8b8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 15l6-6 6 6'/%3E%3C/svg%3E");
+    --theme-icon-creator: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+    --theme-icon-disclosure: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a8a8a8'%3E%3Cpath d='M5 8.5h14L12 17z'/%3E%3C/svg%3E");
+    --theme-icon-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M12 16.5L3.5 8h17z'/%3E%3C/svg%3E");
+    --theme-icon-gear: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z'/%3E%3C/svg%3E");
+    --theme-icon-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z' transform='rotate(-30 12 12)'/%3E%3C/svg%3E");
+    --theme-icon-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M6 4.5h4.2v15H6zM13.8 4.5H18v15h-4.2z'/%3E%3C/svg%3E");
+    --theme-icon-paused-red: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff6b5e'%3E%3Crect x='3' y='2' width='3.6' height='12' rx='0.6'/%3E%3Crect x='9.4' y='2' width='3.6' height='12' rx='0.6'/%3E%3C/svg%3E");
+    --theme-icon-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M7 4.5v15l12.5-7.5z'/%3E%3C/svg%3E");
+    --theme-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M15 15l5 5'/%3E%3C/svg%3E");
+    --theme-icon-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M3.5 4h17v2.4h-17zM12 9.5l8.5 8H3.5z'/%3E%3C/svg%3E");
+    --theme-icon-trash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z'/%3E%3C/svg%3E");
+    --theme-icon-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2f2f2'%3E%3Cpath d='M12 7.5l8.5 8.5H3.5z'/%3E%3C/svg%3E");
+
+    color-scheme: dark;
+}
+
+/* Everything below is nested in :root, which adds one level of specificity to every rule.
+   The theme is @imported at the top of the stock style.css, so it loads before the stock
+   rules; the extra specificity makes it win regardless of stylesheet order. */
+:root {
+
+/* ---------------------------------------------------------------
+   Base
+--------------------------------------------------------------- */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--theme-font);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+* {
+    scrollbar-color: rgb(255 255 255 / 22%) transparent;
+}
+
+::-webkit-scrollbar {
+    height: 11px;
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(255 255 255 / 22%);
+    background-clip: content-box;
+    border: 3px solid transparent;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255 255 255 / 38%);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::selection {
+    background: rgb(10 132 255 / 45%);
+}
+
+hr {
+    background-color: var(--theme-separator);
+}
+
+pre {
+    background-color: var(--theme-content);
+    border-color: var(--theme-separator);
+    border-radius: 6px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+fieldset,
+fieldset.settings {
+    border: 1px solid var(--theme-separator);
+    border-radius: 8px;
+}
+
+
+/* ---------------------------------------------------------------
+   Form controls
+--------------------------------------------------------------- */
+
+input[type="search"],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+    background-color: var(--theme-field);
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    color: var(--theme-text);
+    padding: 3px 6px;
+    transition: box-shadow 0.12s ease;
+}
+
+select,
+input[type="button"],
+input[type="submit"],
+button {
+    background-color: #5c5c5e;
+    border: none;
+    border-radius: 5px;
+    box-shadow:
+        inset 0 0.5px 0 rgb(255 255 255 / 18%),
+        0 0.5px 1.5px rgb(0 0 0 / 40%);
+    color: #ffffff;
+}
+
+select {
+    padding: 3px 6px;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover {
+    background-color: #69696b;
+}
+
+input[type="submit"],
+button[type="submit"] {
+    background-color: var(--theme-accent);
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #2e95ff;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+    opacity: 0.45;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px rgb(10 132 255 / 45%);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--theme-text-tertiary);
+}
+
+/* Filter-row icon buttons in the sidebar should stay flat */
+.categoryToggle,
+.categoryToggle:hover {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   Menus (stock layout, dark colors)
+--------------------------------------------------------------- */
+
+#desktopNavbar {
+    background-color: var(--theme-window);
+    border-bottom: 1px solid var(--theme-separator);
+}
+
+#desktopNavbar li ul,
+.contextMenu,
+.contextMenu li ul {
+    background-color: var(--color-background-popup);
+    border-color: var(--theme-separator);
+}
+
+#desktopNavbar ul li a:hover,
+#desktopNavbar li ul li a:hover,
+#desktopNavbar li ul li div.anchor:hover,
+.contextMenu li a:hover {
+    background-color: var(--theme-control-hover);
+    color: #ffffff;
+}
+
+li.divider,
+.contextMenu .separator {
+    border-top-color: var(--theme-separator);
+}
+
+.contextMenu .separatorBottom {
+    border-bottom-color: var(--theme-separator);
+}
+
+/* ---------------------------------------------------------------
+   Toolbar
+--------------------------------------------------------------- */
+
+#mochaToolbar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 0;
+    padding: 6px 14px;
+}
+
+#mochaToolbar > a,
+#queueingButtons > a,
+#uploadButton label {
+    align-items: center;
+    border-radius: 6px;
+    display: inline-flex !important;
+    height: 32px;
+    justify-content: center;
+    transition: background-color 0.1s ease;
+    width: 38px;
+}
+
+#queueingButtons {
+    align-items: center;
+    display: inline-flex;
+    gap: 4px;
+    margin-left: 18px;
+}
+
+#mochaToolbar a:hover,
+#uploadButton label:hover {
+    background-color: rgb(255 255 255 / 9%);
+}
+
+#mochaToolbar a:active,
+#uploadButton label:active {
+    background-color: rgb(255 255 255 / 16%);
+}
+
+#mochaToolbar .divider {
+    background-image: none;
+    margin-left: 18px;
+    padding: 0;
+}
+
+#queueingButtons a.divider {
+    margin-left: 0;
+}
+
+.mochaToolButton {
+    height: 22px;
+    margin: 0;
+    opacity: 0.92;
+    width: 22px;
+}
+
+/* Search field + tabs on the right */
+#torrentsFilterToolbar {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+    order: 9;
+}
+
+#mochaToolbar:has(#torrentsFilterToolbar.invisible) #mainWindowTabs {
+    margin-left: auto;
+}
+
+#torrentsFilterInput {
+    background-color: var(--theme-control);
+    background-image: var(--theme-icon-search);
+    background-position: 8px center;
+    background-size: 13px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 12px;
+    height: 24px;
+    min-width: 220px;
+    padding: 0 8px 0 27px;
+}
+
+#torrentsFilterRegexBox + label,
+#torrentsFilterRegexBox:checked + label {
+    background-color: var(--theme-control);
+    background-size: 1.2em;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    height: 24px;
+    margin: 0;
+    width: 24px;
+}
+
+#torrentsFilterRegexBox:checked + label {
+    background-color: rgb(10 132 255 / 35%);
+    border-color: var(--theme-accent);
+}
+
+#torrentsFilterToolbar label[for="torrentsFilterSelect"] {
+    color: var(--theme-text-secondary);
+}
+
+/* Same height and text size as the Transfers / Search / RSS control */
+#torrentsFilterSelect {
+    font-size: 12px;
+    height: 24px;
+    padding: 0 6px;
+}
+
+/* Segmented control: Transfers / Search / RSS / Log */
+#mainWindowTabs {
+    float: none;
+    margin: 0 0 0 10px;
+    order: 10;
+}
+
+.tab-menu {
+    font-size: 12px;
+}
+
+#mainWindowTabsList {
+    background-color: var(--theme-control);
+    border-radius: 7px;
+    gap: 2px;
+    padding: 2px;
+}
+
+#mainWindowTabsList li a,
+#mainWindowTabsList li:first-child a {
+    background: transparent;
+    border-radius: 5px;
+    margin: 0;
+    padding: 3px 10px;
+}
+
+#mainWindowTabsList li:hover a {
+    background-color: rgb(255 255 255 / 7%);
+}
+
+#mainWindowTabsList li.selected a {
+    background-color: #636366;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 35%);
+}
+
+/* ---------------------------------------------------------------
+   Layout chrome
+--------------------------------------------------------------- */
+
+#pageWrapper {
+    border: 0;
+}
+
+.panel,
+.panel-header {
+    border-bottom: 0;
+}
+
+.columnHandle {
+    background: transparent;
+    border: 0;
+    width: 4px;
+}
+
+.horizontalHandle .handleIcon {
+    opacity: 0.25;
+}
+
+/* ---------------------------------------------------------------
+   Sidebar (Status / Categories / Tags / Trackers)
+--------------------------------------------------------------- */
+
+#Filters {
+    padding-top: 6px;
+}
+
+.filterTitle {
+    align-items: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 0 4px 8px;
+    text-transform: none;
+}
+
+.filterTitle img {
+    height: 18px;
+    padding: 3px;
+    transition: transform 0.15s ease;
+    width: 18px;
+}
+
+ul.filterList {
+    margin-bottom: 6px;
+}
+
+ul.filterList span.link {
+    border-radius: 6px;
+    font-size: 13px;
+    gap: 8px;
+    margin: 1px 8px;
+    padding: 4px 8px 4px 12px;
+}
+
+ul.filterList span.link:hover {
+    background-color: var(--theme-row-hover);
+    color: var(--theme-text);
+}
+
+.selectedFilter > span.link,
+.selectedFilter > span.link:hover {
+    background-color: var(--theme-sidebar-selected);
+    color: #ffffff;
+}
+
+/* ---------------------------------------------------------------
+   Torrent list + other tables
+--------------------------------------------------------------- */
+
+/* Rounded dark "card" around the transfer list.
+   A thick transparent border fakes the margin without breaking mocha's sizing.
+   Only the background (clipped inside the border) is painted, so there is a single
+   smooth curve: no seam or ghost outline from two overlapping rounded layers. */
+#transferList #transferList_pad {
+    background-clip: padding-box;
+    background-color: var(--theme-content);
+    border: 6px solid transparent;
+    border-radius: 15px;
+    height: 100%;
+    overflow: hidden;
+    padding: 2px 4px 0 !important;
+}
+
+.dynamicTable th {
+    background-color: var(--theme-content);
+    border-right: 1px solid transparent;
+    color: var(--theme-text);
+    font-weight: 500;
+    padding: 6px 8px;
+}
+
+.dynamicTable th:last-child {
+    border-right: 0;
+}
+
+.dynamicTable th.sorted {
+    background-image: var(--theme-icon-chevron-up);
+    background-position: right 4px center;
+    background-size: 11px;
+    padding-right: 18px;
+}
+
+.dynamicTable th.sorted.reverse {
+    background-image: var(--theme-icon-chevron-down);
+}
+
+#propertiesPanel .dynamicTableFixedHeaderDiv,
+#torrentsTableFixedHeaderDiv {
+    border-bottom: 1px solid var(--theme-separator);
+}
+
+.dynamicTable td,
+#transferList .dynamicTable td {
+    padding: 5px 8px;
+}
+
+&.compact .dynamicTable td,
+&.compact #transferList .dynamicTable td {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+#torrentsTableDiv tbody tr {
+    color: var(--theme-text-secondary);
+}
+
+/* Name column (the only one rendering a <span>) stays bright */
+#torrentsTableDiv tbody td > span {
+    color: var(--theme-text);
+}
+
+.altRowColors tbody tr:nth-child(odd of :not(.invisible)) {
+    background-color: rgb(255 255 255 / 2.5%);
+}
+
+/* "Alternate row colors" off: every row gets the tint of the first alternating row.
+   Same specificity as the hover/selected rules below, which come later and win. */
+.dynamicTableDiv:not(.altRowColors) table.dynamicTable tbody tr {
+    background-color: rgb(255 255 255 / 2.5%);
+}
+
+.dynamicTableDiv table.dynamicTable tbody tr:hover {
+    background-color: var(--theme-row-hover);
+    color: var(--theme-text);
+}
+
+.dynamicTableDiv table.dynamicTable tbody tr.selected,
+.dynamicTableDiv table.dynamicTable tbody tr.selected:hover {
+    background-color: var(--theme-row-selected);
+    color: #ffffff;
+}
+
+.dynamicTableDiv table.dynamicTable tbody tr.selected td > span {
+    color: #ffffff;
+}
+
+/* Stopped torrents get the salmon-red pause glyph */
+#transferList .stateIcon.stateStoppedDL,
+#torrentCreatorContentView .stateIcon.stateStoppedDL {
+    background-image: var(--theme-icon-paused-red);
+}
+
+#stopped_filter img {
+    content: var(--theme-icon-paused-red);
+}
+
+/* Progress bars (yellow → green).
+   The bar draws inside a shadow root but reads these inherited variables. */
+progress-bar {
+    --color-background-blue: var(--theme-progress);
+    --color-background-default: #2e2e2e;
+    --color-border-default: transparent;
+    --color-text-default: #ffffff;
+    --color-text-white: #ffffff;
+
+    border-radius: 3px;
+    font-size: 11px; /* fits the stock 12px bar height */
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+    text-shadow: 0 0 2px rgb(0 0 0 / 55%);
+}
+
+/* ---------------------------------------------------------------
+   Properties panel (General / Trackers / Peers / …)
+--------------------------------------------------------------- */
+
+#properties {
+    background-color: var(--theme-window);
+}
+
+/* Inset by the same 6px as the torrent list card so the left/right edges line up */
+#propertiesPanel_header,
+#propertiesPanel {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+/* Dark column-header row of the Trackers / Peers / HTTP Sources / Content tables.
+   Background on the container (not just the cells) so the row always fills the full width,
+   including the reserved scrollbar gutter; the border below then matches its length */
+#propertiesPanel .dynamicTableFixedHeaderDiv {
+    background-color: var(--theme-content);
+    border-radius: 9px 9px 0 0;
+}
+
+/* Rows area uses the same dark background as the header row, down to the bottom of the panel */
+#propertiesPanel .dynamicTableDiv {
+    background-color: var(--theme-content);
+}
+
+/* Trackers / Peers / HTTP Sources / Content tables span the full panel width.
+   Header and body are separate tables; reserving the same scrollbar gutter on both
+   keeps their widths equal, so the extra space is spread identically and columns stay aligned.
+   When the columns are wider than the panel, the tables keep their set widths and scroll. */
+#propertiesPanel .dynamicTableFixedHeaderDiv,
+#propertiesPanel .dynamicTableDiv {
+    scrollbar-gutter: stable;
+}
+
+#propertiesPanel .dynamicTable {
+    width: 100%;
+}
+
+#propertiesTabs {
+    gap: 2px;
+    padding: 3px 10px 0;
+}
+
+#propertiesTabs li a,
+#propertiesTabs li:first-child a {
+    background: transparent;
+    border-radius: 6px;
+    color: var(--theme-text);
+    font-size: 13px;
+    margin: 0;
+    padding: 3px 12px;
+}
+
+#propertiesTabs li a img {
+    display: none;
+}
+
+#propertiesTabs li:hover a {
+    background-color: rgb(255 255 255 / 7%);
+    color: #ffffff;
+}
+
+#propertiesTabs li.selected a {
+    background-color: var(--theme-sidebar-selected);
+    color: #ffffff;
+}
+
+.panel-collapse,
+.panel-expand {
+    filter: invert(85%);
+}
+
+#torrentFilesFilterInput {
+    background-image: var(--theme-icon-search);
+    background-position: 7px center;
+    background-size: 13px;
+    border-radius: 6px;
+    padding-left: 26px;
+}
+
+/* ---------------------------------------------------------------
+   Status bar
+--------------------------------------------------------------- */
+
+#desktopFooterWrapper {
+    border-top: 1px solid var(--theme-separator);
+}
+
+#desktopFooter {
+    color: var(--theme-text);
+    font-family: var(--theme-font);
+    font-size: 12px;
+    padding: 3px 8px;
+}
+
+#desktopFooter td {
+    vertical-align: middle;
+}
+
+td.statusBarSeparator {
+    background-image: none;
+    width: 28px;
+}
+
+/* ---------------------------------------------------------------
+   Floating windows / dialogs
+--------------------------------------------------------------- */
+
+.mocha {
+    background-color: #2c2c2e;
+    border-radius: 11px;
+    box-shadow:
+        0 0 0 0.5px rgb(0 0 0 / 80%),
+        inset 0 0 0 0.5px rgb(255 255 255 / 14%),
+        0 22px 60px rgb(0 0 0 / 55%);
+}
+
+.mochaOverlay,
+.mochaTitlebar {
+    background-color: #2c2c2e;
+    border-radius: 11px;
+}
+
+.mochaTitlebar h3 {
+    color: var(--theme-text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 80px 6px;
+    text-align: center;
+}
+
+/* Window buttons keep the stock position (top right) and plain glyphs */
+.mochaWindowButton {
+    border-radius: 4px;
+}
+
+.mochaWindowButton:hover {
+    background-color: rgb(255 255 255 / 12%);
+}
+
+.mochaToolbar,
+.mochaContentBorder {
+    border-color: var(--theme-separator);
+}
+
+.mocha .cornerSE {
+    background-color: transparent;
+}
+
+#modalOverlay {
+    background: rgb(0 0 0 / 45%);
+}
+
+/* Statistics window */
+#statisticsContent table {
+    background-color: var(--theme-content);
+    border-radius: 8px;
+}
+
+/* ---------------------------------------------------------------
+   Icons swapped from CSS (the stock HTML stays untouched)
+--------------------------------------------------------------- */
+
+#uploadButton img { content: var(--theme-icon-add-file); }
+#downloadButton img { content: var(--theme-icon-link); }
+#deleteButton img { content: var(--theme-icon-trash); }
+#startButton img { content: var(--theme-icon-play); }
+#stopButton img { content: var(--theme-icon-pause); }
+#topPrioButton img { content: var(--theme-icon-top); }
+#increasePrioButton img { content: var(--theme-icon-up); }
+#decreasePrioButton img { content: var(--theme-icon-down); }
+#bottomPrioButton img { content: var(--theme-icon-bottom); }
+#torrentCreatorButton img { content: var(--theme-icon-creator); }
+#preferencesButton img { content: var(--theme-icon-gear); }
+
+.filterTitle img { content: var(--theme-icon-disclosure); }
+}

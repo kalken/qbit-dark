@@ -1,0 +1,96 @@
+/* qbit-dark — login page */
+
+:root {
+    color-scheme: dark;
+}
+
+/* Nested in :root so these rules beat the stock login.css, which loads after this import */
+:root {
+body {
+    -webkit-font-smoothing: antialiased;
+    background: radial-gradient(ellipse at top, #333336 0%, #1c1c1e 70%) fixed;
+    color: #ececec;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
+        "Segoe UI", system-ui, sans-serif;
+    font-size: 13px;
+    min-height: 100vh;
+}
+
+#main {
+    background-color: rgb(44 44 46 / 92%);
+    border-radius: 14px;
+    box-shadow:
+        0 0 0 0.5px rgb(0 0 0 / 80%),
+        inset 0 0 0 0.5px rgb(255 255 255 / 14%),
+        0 24px 70px rgb(0 0 0 / 55%);
+    margin-top: 12vh;
+    max-width: 320px;
+    padding: 28px 28px 22px;
+}
+
+#main h1 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    order: 1;
+}
+
+#logo {
+    order: 0;
+}
+
+#logo img {
+    filter: drop-shadow(0 6px 14px rgb(0 0 0 / 45%));
+    height: 84px;
+    margin-bottom: 10px;
+}
+
+#formplace {
+    order: 2;
+    padding: 10px 0 0;
+    width: 100%;
+}
+
+#error_msg {
+    color: #ff6961;
+    order: 3;
+    white-space: pre-wrap;
+}
+
+label {
+    color: #a8a8a8;
+    font-size: 12px;
+}
+
+.login-input {
+    background-color: #232323;
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    color: #ececec;
+    font-size: 13px;
+    margin: 4px 0 8px;
+    outline: none;
+    padding: 7px 9px;
+}
+
+.login-input:focus {
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 3px rgb(10 132 255 / 45%);
+}
+
+#loginButton {
+    background-color: #0a84ff;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+    padding: 7px;
+}
+
+#loginButton:hover {
+    background-color: #2e95ff;
+}
+}
